@@ -1,12 +1,17 @@
 <p align="center"><img width="100" height="100" src="https://vuejs.org/images/logo.png" alt="Vue logo"></p>
 
-<h2 align="center">Vue Promise Snapshot</h2>
+<h1 align="center">Vue Promise Snapshot</h1>
 
 <p align="center">
   Reactive object that sync itself based on the latest snapshot of interaction with a Promise.
 </p>
 
 #
+
+## Notice
+This beta version is compatible with Vue 3 beta.
+
+If you want Vue 2 compatible version, then see [here](https://github.com/c5n8/vue-promise-snapshot#readme)
 
 ## Installation
 
@@ -21,10 +26,6 @@ yarn add vue-promise-snapshot
 ```
 
 ## Usage
-
-You must install `@vue/composition-api` as a plugin via `Vue.use()` beforehand.
-
-See [@vue/composition-api](https://github.com/vuejs/composition-api).
 
 ```html
 <template>
