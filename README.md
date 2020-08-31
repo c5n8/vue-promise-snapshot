@@ -24,7 +24,7 @@ yarn add vue-promise-snapshot
 
 You must install `@vue/composition-api` as a plugin via `Vue.use()` beforehand.
 
-See [@vue/composition-api](https://github.com/vuejs/composition-prev).
+See [@vue/composition-api](https://github.com/vuejs/composition-api).
 
 ```html
 <template>
