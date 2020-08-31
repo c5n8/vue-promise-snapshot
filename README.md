@@ -13,6 +13,10 @@ This stable version is compatible with Vue 2 using `@vue/composition-api` plugin
 
 If you want Vue 3 beta compatible version, then see [here](https://github.com/c5n8/vue-promise-snapshot/tree/release/v2.0.0-beta.1#readme)
 
+## Tips
+
+If you want same functionality, but as component, then checkout [vue-promise-builder](https://github.com/c5n8/vue-promise-builder#readme).
+
 ## Installation
 
 - Using NPM
