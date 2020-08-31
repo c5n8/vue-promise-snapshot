@@ -21,12 +21,12 @@ If you want same functionality, but as component, then checkout [vue-promise-bui
 
 - Using NPM
 ```
-npm install vue-promise-snapshot
+npm install vue-promise-snapshot@beta
 ```
 
 - Using Yarn
 ```
-yarn add vue-promise-snapshot
+yarn add vue-promise-snapshot@beta
 ```
 
 ## Usage
