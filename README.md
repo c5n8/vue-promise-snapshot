@@ -13,6 +13,10 @@ This beta version is compatible with Vue 3 beta.
 
 If you want Vue 2 compatible version, then see [here](https://github.com/c5n8/vue-promise-snapshot#readme)
 
+## Tips
+
+If you want same functionality, but as component, then checkout [vue-promise-builder](https://github.com/c5n8/vue-promise-builder#readme).
+
 ## Installation
 
 - Using NPM
