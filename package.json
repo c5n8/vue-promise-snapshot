@@ -19,14 +19,14 @@
   "types": "dist/index.d.ts",
   "scripts": {
     "build": "tsc -p tsconfig.json",
-    "prepublish": "npm run build"
+    "prepublishOnly": "npm run build"
   },
   "files": [
     "dist/*"
   ],
   "author": "",
   "dependencies": {
-    "vue": "^3.0.0-beta.2"
+    "vue": "^3.0.0-rc.9"
   },
   "devDependencies": {
     "typescript": "^4.0.2"

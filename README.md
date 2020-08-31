@@ -1,4 +1,4 @@
-<p align="center"><img width="100" src="https://vuejs.org/images/logo.png" alt="Vue logo"></p>
+<p align="center"><img width="100" height="100" src="https://vuejs.org/images/logo.png" alt="Vue logo"></p>
 
 <h2 align="center">Vue Promise Snapshot</h2>
 
@@ -22,7 +22,9 @@ yarn add vue-promise-snapshot
 
 ## Usage
 
-> You are required to use @vue/composition-api beforehand
+You must install `@vue/composition-api` as a plugin via `Vue.use()` beforehand.
+
+See [@vue/composition-api](https://github.com/vuejs/composition-api).
 
 ```html
 <template>
