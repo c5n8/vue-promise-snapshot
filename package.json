@@ -3,12 +3,18 @@
   "version": "0.0.2",
   "description": "Reactive object that sync itself based on the latest snapshot of interaction with a Promise.",
   "repository": {
-    "type" : "git",
-    "url" : "https://github.com/c5n8/vue-promise-snapshot"
+    "type": "git",
+    "url": "https://github.com/c5n8/vue-promise-snapshot"
   },
-  "homepage" : "https://github.com/c5n8/vue-promise-snapshot#readme",
+  "homepage": "https://github.com/c5n8/vue-promise-snapshot#readme",
   "license": "MIT",
-  "keywords": ["vue", "use", "promise", "snapshot", "composition"],
+  "keywords": [
+    "vue",
+    "use",
+    "promise",
+    "snapshot",
+    "composition"
+  ],
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "scripts": {
@@ -20,8 +26,7 @@
   ],
   "author": "",
   "dependencies": {
-    "@vue/composition-api": "^1.0.0-beta.11",
-    "vue": "^2.6.12"
+    "vue": "^3.0.0-beta.2"
   },
   "devDependencies": {
     "typescript": "^4.0.2"
