@@ -1,6 +1,5 @@
 <p align="center"><img width="100" height="100" src="https://vuejs.org/images/logo.png" alt="Vue logo"></p>
 
-<p align="center">BETA</p>
 <h2 align="center">Vue Promise Snapshot</h2>
 <p align="center">
   Reactive object that sync itself based on the latest snapshot of interaction with a Promise.
