@@ -11,7 +11,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.usePromise = void 0;
 const composition_api_1 = require("@vue/composition-api");
-const dictionary_1 = require("./dictionary");
+const vue_extend_reactive_1 = require("vue-extend-reactive");
 exports.default = usePromise;
 function usePromise() {
     const state = composition_api_1.reactive({
@@ -25,8 +25,8 @@ function usePromise() {
         isFulfilled: composition_api_1.computed(() => state.status === 'fulfilled'),
         isRejected: composition_api_1.computed(() => state.status === 'rejected'),
         isSettled: composition_api_1.computed(() => getters.isFulfilled || getters.isRejected),
-        hasResult: composition_api_1.computed(() => getters.isSettled && state.result !== null),
-        hasError: composition_api_1.computed(() => getters.isSettled && state.error !== null),
+        hasResult: composition_api_1.computed(() => getters.isSettled ? state.result != null : undefined),
+        hasError: composition_api_1.computed(() => getters.isSettled ? state.error != null : undefined),
     });
     function start(promise) {
         return __awaiter(this, void 0, void 0, function* () {
@@ -39,7 +39,6 @@ function usePromise() {
             }
             catch (error) {
                 state.error = error;
-                state.result = null;
                 state.status = 'rejected';
                 throw error;
             }
@@ -49,6 +48,6 @@ function usePromise() {
             return result;
         });
     }
-    return dictionary_1.extend(dictionary_1.extend(state, getters), { start });
+    return vue_extend_reactive_1.extend(vue_extend_reactive_1.extend(state, getters), { start });
 }
 exports.usePromise = usePromise;
