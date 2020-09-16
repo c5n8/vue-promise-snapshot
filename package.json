@@ -6,7 +6,7 @@
     "type": "git",
     "url": "https://github.com/c5n8/vue-promise-snapshot"
   },
-  "homepage": "https://github.com/c5n8/vue-promise-snapshot#readme",
+  "homepage": "https://github.com/c5n8/vue-promise-snapshot",
   "license": "MIT",
   "keywords": [
     "vue",
@@ -27,7 +27,8 @@
   "author": "",
   "dependencies": {
     "@vue/composition-api": "^1.0.0-beta.11",
-    "vue": "^2.6.12"
+    "vue": "^2.6.12",
+    "vue-extend-reactive": "^1.0.1"
   },
   "devDependencies": {
     "typescript": "^4.0.2"
