@@ -1,5 +1,5 @@
 import { reactive, computed } from 'vue';
-import { extend } from './dictionary';
+import { extend } from 'vue-extend-reactive';
 export default usePromise;
 export function usePromise() {
     const state = reactive({
@@ -13,8 +13,8 @@ export function usePromise() {
         isFulfilled: computed(() => state.status === 'fulfilled'),
         isRejected: computed(() => state.status === 'rejected'),
         isSettled: computed(() => getters.isFulfilled || getters.isRejected),
-        hasResult: computed(() => getters.isSettled && state.result !== null),
-        hasError: computed(() => getters.isSettled && state.error !== null),
+        hasResult: computed(() => getters.isSettled ? state.result != null : undefined),
+        hasError: computed(() => getters.isSettled ? state.error != null : undefined),
     });
     async function start(promise) {
         state.error = undefined;
@@ -26,7 +26,6 @@ export function usePromise() {
         }
         catch (error) {
             state.error = error;
-            state.result = null;
             state.status = 'rejected';
             throw error;
         }

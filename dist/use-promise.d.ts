@@ -16,8 +16,8 @@ interface Getters {
     readonly isFulfilled: boolean;
     readonly isRejected: boolean;
     readonly isSettled: boolean;
-    readonly hasResult: boolean;
-    readonly hasError: boolean;
+    readonly hasResult: boolean | undefined;
+    readonly hasError: boolean | undefined;
 }
 interface Methods<R> {
     start(promise: Promise<R>): Promise<R>;

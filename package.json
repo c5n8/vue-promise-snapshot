@@ -26,7 +26,8 @@
   ],
   "author": "",
   "dependencies": {
-    "vue": "^3.0.0-rc.9"
+    "vue": "^3.0.0-rc.11",
+    "vue-extend-reactive": "^1.0.0"
   },
   "devDependencies": {
     "typescript": "^4.0.2"

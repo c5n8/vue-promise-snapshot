@@ -1,5 +1,5 @@
 import { reactive, computed } from 'vue'
-import { extend } from './dictionary'
+import { extend } from 'vue-extend-reactive'
 
 export default usePromise
 
@@ -48,8 +48,7 @@ export function usePromise<R>(): PromiseSnapshot<R> {
 
 interface PromiseSnapshot<R> extends State<R>, Getters, Methods<R> {
   readonly error: any
-      state.result = null
-      readonly result: R | null | undefined
+  readonly result: R | null | undefined
   readonly status: PromiseStatus
 }
 
