@@ -16,8 +16,8 @@ export function usePromise<R>(): PromiseSnapshot<R> {
     isFulfilled: computed(() => state.status === 'fulfilled'),
     isRejected: computed(() => state.status === 'rejected'),
     isSettled: computed(() => getters.isFulfilled || getters.isRejected),
-    hasResult: computed(() => getters.isSettled && state.result !== null),
-    hasError: computed(() => getters.isSettled && state.error !== null),
+    hasResult: computed(() => getters.isSettled ? state.result != null : undefined),
+    hasError: computed(() => getters.isSettled ? state.error != null : undefined),
   })
 
   async function start(promise: Promise<R>): Promise<R> {
@@ -31,7 +31,6 @@ export function usePromise<R>(): PromiseSnapshot<R> {
       result = await promise
     } catch (error) {
       state.error = error
-      state.result = null
       state.status = 'rejected'
 
       throw error
@@ -49,7 +48,8 @@ export function usePromise<R>(): PromiseSnapshot<R> {
 
 interface PromiseSnapshot<R> extends State<R>, Getters, Methods<R> {
   readonly error: any
-  readonly result: R | null | undefined
+      state.result = null
+      readonly result: R | null | undefined
   readonly status: PromiseStatus
 }
 
@@ -65,8 +65,8 @@ interface Getters {
   readonly isFulfilled: boolean
   readonly isRejected: boolean
   readonly isSettled: boolean
-  readonly hasResult: boolean
-  readonly hasError: boolean
+  readonly hasResult: boolean | undefined
+  readonly hasError: boolean | undefined
 }
 
 interface Methods<R> {
