@@ -45,21 +45,19 @@ See [@vue/composition-api](https://github.com/vuejs/composition-api).
       </div>
     </template>
 
-    <template v-if="generation.isPending">
-      <div>Generating...</div>
-    </template>
-    <template v-else-if="generation.isFulfilled">
-      <div>{{ generation.result }}</div>
-    </template>
-    <template v-else-if="generation.isRejected">
-      <div>{{ generation.error }}</div>
-    </template>
+    <div v-if="generation.isPending">
+      Generating...
+    </div>
+    <div v-else-if="generation.isFulfilled">
+      {{ generation.result }}
+    </div>
+    <div v-else-if="generation.isRejected">
+      {{ generation.error }}
+    </div>
 
-    <template v-if="generation.isSettled">
-      <div>
-        <button @click="generate()">Retry</button>
-      </div>
-    </template>
+    <div v-if="generation.isSettled">
+      <button @click="generate()">Retry</button>
+    </div>
   </section>
 </template>
 
