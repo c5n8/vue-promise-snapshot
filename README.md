@@ -32,30 +32,26 @@ yarn add vue-promise-snapshot@beta
 
 ```html
 <template>
-  <section>
-    <template v-if="generation.isStandby">
-      <div>Generate number 1-1000</div>
-      <div>
-        <button @click="generate()">Start</button>
-      </div>
-    </template>
+  <template v-if="generation.isStandby">
+    <div>Generate number 1-1000</div>
+    <div>
+      <button @click="generate()">Start</button>
+    </div>
+  </template>
 
-    <template v-if="generation.isPending">
-      <div>Generating...</div>
-    </template>
-    <template v-else-if="generation.isFulfilled">
-      <div>{{ generation.result }}</div>
-    </template>
-    <template v-else-if="generation.isRejected">
-      <div>{{ generation.error }}</div>
-    </template>
+  <div v-if="generation.isPending">
+    Generating...
+  </div>
+  <div v-else-if="generation.isFulfilled">
+    {{ generation.result }}
+  </div>
+  <div v-else-if="generation.isRejected">
+    {{ generation.error }}
+  </div>
 
-    <template v-if="generation.isSettled">
-      <div>
-        <button @click="generate()">Retry</button>
-      </div>
-    </template>
-  </section>
+  <div v-if="generation.isSettled">
+    <button @click="generate()">Retry</button>
+  </div>
 </template>
 
 <script>
