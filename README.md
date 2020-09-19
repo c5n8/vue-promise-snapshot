@@ -38,12 +38,10 @@ See [@vue/composition-api](https://github.com/vuejs/composition-api).
 ```html
 <template>
   <section>
-    <template v-if="generation.isStandby">
+    <div v-if="generation.isStandby">
       <div>Generate number 1-1000</div>
-      <div>
-        <button @click="generate()">Start</button>
-      </div>
-    </template>
+      <button @click="generate()">Start</button>
+    </div>
 
     <div v-if="generation.isPending">
       Generating...
