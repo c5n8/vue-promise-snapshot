@@ -28,9 +28,9 @@
   "dependencies": {
     "@vue/composition-api": "^1.0.0-beta.11",
     "vue": "^2.6.12",
-    "vue-extend-reactive": "^1.0.1"
+    "vue-extend-reactive": "^1.1.3"
   },
   "devDependencies": {
-    "typescript": "^4.0.2"
+    "typescript": "^4.0.3"
   }
 }

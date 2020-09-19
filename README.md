@@ -38,64 +38,74 @@ See [@vue/composition-api](https://github.com/vuejs/composition-api).
 ```html
 <template>
   <section>
-    <template v-if="calculation.isStandby">
+    <template v-if="generation.isStandby">
       <div>Generate number 1-1000</div>
       <div>
-        <button @click="startCalculation()">Start</button>
+        <button @click="generate()">Start</button>
       </div>
     </template>
 
-    <template v-if="calculation.isPending">
+    <template v-if="generation.isPending">
       <div>Generating...</div>
     </template>
-    <template v-else-if="calculation.isFulfilled">
-      <div>{{ calculation.result }}</div>
+    <template v-else-if="generation.isFulfilled">
+      <div>{{ generation.result }}</div>
     </template>
-    <template v-else-if="calculation.isRejected">
-      <div>{{ calculation.error }}</div>
+    <template v-else-if="generation.isRejected">
+      <div>{{ generation.error }}</div>
     </template>
 
-    <template v-if="calculation.isSettled">
+    <template v-if="generation.isSettled">
       <div>
-        <button @click="startCalculation()">Retry</button>
+        <button @click="generate()">Retry</button>
       </div>
     </template>
   </section>
 </template>
 
 <script>
-import { usePromise } from 'vue-promise-snapshot'
-import { sample, random } from 'lodash-es'
+import { usePromiseSnapshot } from 'vue-promise-snapshot'
 
 export default {
   setup() {
-    const calculation = usePromise()
+    const generation = usePromiseSnapshot()
 
-    async function startCalculation() {
+    async function generate() {
+      generation.promise = _generate()
+
       try {
-        await calculation.start(calculate())
+        await generation.promise
       } catch (error) {
         //
       }
     }
 
+    // You can also use start method to get one-liner and type hints
+
+    // async function generate() {
+    //   try {
+    //     await generation.start(_generate())
+    //   } catch (error) {
+    //     //
+    //   }
+    // }
+
     return {
-      calculation,
-      startCalculation,
+      generation,
+      generate,
     }
   },
 }
 
-export async function calculate() {
-  const duration = random(200, 2000)
+async function _generate() {
+  const random = (min, max) => Math.floor(Math.random() * Math.floor(max - min + 1)) + parseInt(min)
+  await new Promise((resolve) => setTimeout(resolve, random(200, 2000)))
 
-  await new Promise((resolve) => setTimeout(resolve, duration))
-
-  if (sample([true, false])) {
+  if (random(0, 1)) {
     throw new Error('Failed to generate')
   }
 
-  return random(0, 1000)
+  return random(1, 1000)
 }
 </script>
 ```
@@ -106,17 +116,18 @@ export async function calculate() {
 declare function usePromise<R>(): PromiseSnapshot<R>
 
 interface PromiseSnapshot<R> {
-    readonly error: any
-    readonly result: R | null | undefined
-    readonly status: 'standby' | 'pending' | 'fulfilled' | 'rejected'
-    readonly isStandby: boolean
-    readonly isPending: boolean
-    readonly isFulfilled: boolean
-    readonly isRejected: boolean
-    readonly isSettled: boolean
-    readonly hasResult: boolean
-    readonly hasError: boolean
-    start(promise: Promise<R>): Promise<R>
+  promise: Promise<R | any> | null
+  readonly error: any
+  readonly result: R | null | undefined
+  readonly status: 'standby' | 'pending' | 'fulfilled' | 'rejected'
+  readonly isStandby: boolean
+  readonly isPending: boolean
+  readonly isFulfilled: boolean
+  readonly isRejected: boolean
+  readonly isSettled: boolean
+  readonly hasResult: boolean
+  readonly hasError: boolean
+  start<T>(promise: Promise<T>): Promise<T>
 }
 ```
 
