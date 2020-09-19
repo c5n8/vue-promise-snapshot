@@ -1,7 +1,11 @@
-import { reactive, computed } from 'vue';
+import { reactive, computed, watch } from 'vue';
 import { extend } from 'vue-extend-reactive';
-export default usePromise;
-export function usePromise() {
+export default usePromiseSnapshot;
+export { usePromiseSnapshot as usePromise };
+export function usePromiseSnapshot() {
+    const props = reactive({
+        promise: null,
+    });
     const state = reactive({
         error: undefined,
         result: undefined,
@@ -17,8 +21,16 @@ export function usePromise() {
         hasError: computed(() => getters.isSettled ? state.error != null : undefined),
     });
     async function start(promise) {
+        props.promise = promise;
+        return await promise;
+    }
+    watch(() => props.promise, async (promise) => {
         state.error = undefined;
         state.result = undefined;
+        if (promise == null) {
+            state.status = 'standby';
+            return;
+        }
         state.status = 'pending';
         let result;
         try {
@@ -27,12 +39,11 @@ export function usePromise() {
         catch (error) {
             state.error = error;
             state.status = 'rejected';
-            throw error;
+            return;
         }
         state.error = null;
         state.result = result;
         state.status = 'fulfilled';
-        return result;
-    }
-    return extend(extend(state, getters), { start });
+    });
+    return extend(extend(extend(state, props), getters), { start });
 }
