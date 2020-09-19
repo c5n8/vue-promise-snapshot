@@ -1,6 +1,6 @@
 {
   "name": "vue-promise-snapshot",
-  "version": "1.0.3",
+  "version": "1.1.0",
   "description": "Reactive object that sync itself based on the latest snapshot of interaction with a Promise.",
   "repository": {
     "type": "git",
