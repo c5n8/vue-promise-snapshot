@@ -32,12 +32,10 @@ yarn add vue-promise-snapshot@beta
 
 ```html
 <template>
-  <template v-if="generation.isStandby">
+  <div v-if="generation.isStandby">
     <div>Generate number 1-1000</div>
-    <div>
-      <button @click="generate()">Start</button>
-    </div>
-  </template>
+    <button @click="generate()">Start</button>
+  </div>
 
   <div v-if="generation.isPending">
     Generating...
