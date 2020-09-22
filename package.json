@@ -1,7 +1,7 @@
 {
   "name": "vue-promise-snapshot",
   "version": "1.1.3",
-  "description": "Reactive object that sync itself based on the latest snapshot of interaction with a Promise.",
+  "description": "Reactive object that sync itself based on the latest snapshot of state of a Promise.",
   "repository": {
     "type": "git",
     "url": "https://github.com/c5n8/vue-promise-snapshot"
@@ -10,8 +10,10 @@
   "license": "MIT",
   "keywords": [
     "vue",
+    "async",
     "use",
     "promise",
+    "state",
     "snapshot",
     "composition"
   ],

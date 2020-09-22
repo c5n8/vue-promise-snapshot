@@ -3,7 +3,7 @@
 <h2 align="center">Vue Promise Snapshot</h2>
 
 <p align="center">
-  Reactive object that sync itself based on the latest snapshot of interaction with a Promise.
+  Reactive object that sync itself based on the latest snapshot of state of a Promise.
 </p>
 
 #
@@ -37,7 +37,7 @@ See [@vue/composition-api](https://github.com/vuejs/composition-api).
 
 ```html
 <template>
-  <section>
+  <div>
     <div v-if="generation.isStandby">
       <div>Generate number 1-1000</div>
       <button @click="generate()">Start</button>
@@ -56,7 +56,7 @@ See [@vue/composition-api](https://github.com/vuejs/composition-api).
     <div v-if="generation.isSettled">
       <button @click="generate()">Retry</button>
     </div>
-  </section>
+  </div>
 </template>
 
 <script>
@@ -67,7 +67,7 @@ export default {
     const generation = usePromiseSnapshot()
 
     async function generate() {
-      generation.promise = _generate()
+      generation.promise = _generate(1, 1000)
 
       try {
         await generation.promise
@@ -80,7 +80,7 @@ export default {
 
     // async function generate() {
     //   try {
-    //     await generation.start(_generate())
+    //     await generation.start(_generate(1, 1000))
     //   } catch (error) {
     //     //
     //   }
@@ -93,15 +93,18 @@ export default {
   },
 }
 
-async function _generate() {
-  const random = (min, max) => Math.floor(Math.random() * Math.floor(max - min + 1)) + parseInt(min)
+async function _generate(min, max) {
   await new Promise((resolve) => setTimeout(resolve, random(200, 2000)))
-
+ 
   if (random(0, 1)) {
     throw new Error('Failed to generate')
   }
-
-  return random(1, 1000)
+ 
+  return random(min, max)
+}
+ 
+function random(min, max) {
+  return Math.floor(Math.random() * Math.floor(max - min + 1)) + min
 }
 </script>
 ```
@@ -118,11 +121,11 @@ interface PromiseSnapshot<R> {
   readonly status: 'standby' | 'pending' | 'fulfilled' | 'rejected'
   readonly isStandby: boolean
   readonly isPending: boolean
-  readonly isFulfilled: boolean
-  readonly isRejected: boolean
   readonly isSettled: boolean
-  readonly hasResult: boolean
-  readonly hasError: boolean
+  readonly isFulfilled: boolean | undefined
+  readonly isRejected: boolean | undefined
+  readonly hasResult: boolean | undefined
+  readonly hasError: boolean | undefined
   start<T>(promise: Promise<T>): Promise<T>
 }
 ```

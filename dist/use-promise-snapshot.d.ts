@@ -17,9 +17,9 @@ interface State<R> {
 interface Getters {
     readonly isStandby: boolean;
     readonly isPending: boolean;
-    readonly isFulfilled: boolean;
-    readonly isRejected: boolean;
     readonly isSettled: boolean;
+    readonly isFulfilled: boolean | undefined;
+    readonly isRejected: boolean | undefined;
     readonly hasResult: boolean | undefined;
     readonly hasError: boolean | undefined;
 }

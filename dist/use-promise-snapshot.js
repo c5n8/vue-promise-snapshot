@@ -25,9 +25,9 @@ function usePromiseSnapshot() {
     const getters = composition_api_1.reactive({
         isStandby: composition_api_1.computed(() => state.status === 'standby'),
         isPending: composition_api_1.computed(() => state.status === 'pending'),
-        isFulfilled: composition_api_1.computed(() => state.status === 'fulfilled'),
-        isRejected: composition_api_1.computed(() => state.status === 'rejected'),
-        isSettled: composition_api_1.computed(() => getters.isFulfilled || getters.isRejected),
+        isSettled: composition_api_1.computed(() => state.status === 'fulfilled' || state.status === 'rejected'),
+        isFulfilled: composition_api_1.computed(() => getters.isSettled ? state.status === 'fulfilled' : undefined),
+        isRejected: composition_api_1.computed(() => getters.isSettled ? state.status === 'rejected' : undefined),
         hasResult: composition_api_1.computed(() => getters.isSettled ? state.result != null : undefined),
         hasError: composition_api_1.computed(() => getters.isSettled ? state.error != null : undefined),
     });
@@ -58,7 +58,9 @@ function usePromiseSnapshot() {
         state.result = result;
         state.status = 'fulfilled';
     }));
-    return vue_extend_reactive_1.extend(vue_extend_reactive_1.extend(vue_extend_reactive_1.extend(state, props), getters), { start });
+    return vue_extend_reactive_1.extend(vue_extend_reactive_1.extend(vue_extend_reactive_1.extend(state, props), getters), {
+        start,
+    });
 }
 exports.usePromiseSnapshot = usePromiseSnapshot;
 exports.usePromise = usePromiseSnapshot;
